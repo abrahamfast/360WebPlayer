@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bivrost - Development setup</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cerulean/bootstrap.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			body { padding-bottom: 2em; }
+		</style>
+	</head>
+	<body >
+
+
+		<nav class="container">
+			<ul class="nav nav-pills pull-left">
+				<li role="presentation" class="pull-left"><a href="index.html"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>index</a></li>
+			</ul>
+		</nav>
+
+		<article class="container" role="main">
+			<header>
+				<h1 id="development-setup">Development setup</h1>
+			</header>
+
+			<section>
+				
+<p><strong>NOTE:</strong> These are the instructions for developing 360WebPlayer. For information on how to use the player, please refer to the main documentation.<br>The compiled version <a href="https://github.com/Bivrost/360WebPlayer/releases/tag/current">available for download at the release tab of the GitHub page</a> is sufficient in 99% of the cases – building the player by yourself is not necessary.</p>
+<p>Install npm, ruby and java. Have them in your path.
+For Windows we advise to use cygwin.</p>
+<h2 id="prepare-the-project">Prepare the project</h2>
+<p>After a successful git checkout, <code>cd</code> into the 360WebPlayer&#39;s directory and:</p>
+<pre><code class="lang-bash">npm install
+npm install -g grunt-cli
+gem install sass
+gem install compass
+mkdir node_modules/grunt-closure-compiler/build
+pushd node_modules/grunt-closure-compiler/build
+wget https://dl.google.com/closure-compiler/compiler-latest.zip
+7z x compiler-latest.zip
+mv closure-compiler*jar compiler.jar
+rm compiler-latest.zip
+popd
+</code></pre>
+<p>Note: on some systems, <code>gem</code> and <code>npm install -g</code> commands might require administrator privileges:</p>
+<pre><code class="lang-bash">sudo gem install sass
+sudo gem install compass
+sudo npm install -g grunt-cli
+</code></pre>
+<p>On recent MacOS, you might need to install <code>compass</code> to a different directory if using pre-installed ruby:</p>
+<pre><code>sudo gem install -n /usr/local/bin compass
+</code></pre><p>On WSL/ubuntu, <code>ruby-dev</code> is required for sass installation.</p>
+<pre><code>sudo apt-get install ruby-dev
+</code></pre><p>Java JRE is required for Google Closure Compiler:</p>
+<pre><code>sudo apt install openjdk-8-jre-headless
+</code></pre><h2 id="build-the-project">Build the project</h2>
+<p>Build the project with:</p>
+<pre><code class="lang-bash">grunt
+</code></pre>
+<p>The results will be stored in the output directory:</p>
+<ul>
+<li><code>output/release</code> - the compiled scripts, styles and html documentation with embedded images</li>
+<li><code>output/site</code> - the HTML, JavaScript and CSS parts that are to be copied to a web server for demonstration. They lack the media files that are supposed to be on the server in the <code>media</code> subdirectory. </li>
+<li><code>output/devel</code> - the HTML, JavaScript and CSS parts that are to be used on a local server for development. They lack the media files that are supposed to be on the server on the prefix dictated by <code>media_prefix_devel</code> in the Gruntfile.</li>
+</ul>
+<p>There are a few sub targets when you do not want to rebuild everything. The most interesting are:</p>
+<ul>
+<li><code>grunt docs</code> rebuilds the documentation,</li>
+<li><code>grunt build</code> rebuilds and recompiles the JavaScript and CSS files,</li>
+<li><code>grunt release</code> builds the release zip,</li>
+<li><code>grunt sass</code> rebuilds just the CSS,</li>
+<li><code>grunt debug</code> rebuilds the CSS and unminified JavaScript output, without compiling it.</li>
+</ul>
+<h2 id="issue-tracking">Issue tracking</h2>
+<p>The project has two issue trackers, a public one (GitHub) with issues marked as #NNN and a legacy private one (Redmine) with issues marked as redmine-NNN.</p>
+
+			</section>
+		</article>
+		
+
+	</body>
+</html>

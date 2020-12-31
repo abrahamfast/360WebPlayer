@@ -1,0 +1,13 @@
+src/bivrost-media-video.js:52: WARNING - [JSC_SUSPICIOUS_LEFT_OPERAND_OF_LOGICAL_OPERATOR] Left operand of && operator is always truthy.
+  52| 			}[(video.error || {code:-1}) && video.error.code];
+      			  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/bivrost-projection-dome.js:23: WARNING - [JSC_STRING_CONTINUATION] String continuations are not recommended. See https://google.github.io/styleguide/jsguide.html#features-strings-no-line-continuations
+  23| 				"varying vec2 vUv;																\n\
+      				^
+
+src/bivrost-projection-dome.js:31: WARNING - [JSC_STRING_CONTINUATION] String continuations are not recommended. See https://google.github.io/styleguide/jsguide.html#features-strings-no-line-continuations
+  31| 				"uniform sampler2D mainTex;														\n\
+      				^
+
+0 error(s), 3 warning(s)
